@@ -1,0 +1,57 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates. All Rights Reserved.
+DEV:
+  ENABLE: True
+  TEST_LANG_EMB: './data/clip_step_emb_coin.pth' # used for dim check
+  ORDER_TFM_LAYERS: 4
+TRAIN:
+  ENABLE: True
+  DATASET: howto100m_develop
+  BATCH_SIZE: 16 # per machine node
+  EVAL_PERIOD: 3
+  CHECKPOINT_PERIOD: 3
+  AUTO_RESUME: True
+  LINEAR: True # enable finetuning
+  EPOCH_MUL: 2
+DATA:
+  PATH_TO_DATA_DIR: "./data_csv/coin_task/" # path to metadata files
+  PATH_PREFIX: '/fsx/yiwuzhong/data/coin/videos/videos_flat/' # path to video files
+  NUM_FRAMES: 8
+  SAMPLING_RATE: 32 # determined by DATA.FD
+  TRAIN_JITTER_SCALES: [256, 320]
+  TRAIN_CROP_SIZE: 224
+  TEST_CROP_SIZE: 224
+  INPUT_CHANNEL_NUM: [3]
+  FD: 68. # duration of multiple video clips
+  DECODING_BACKEND: 'ffmpeg'
+TIMESFORMER:
+  ATTENTION_TYPE: 'divided_space_time'
+SOLVER:
+  BASE_LR: 0.005
+  LR_POLICY: steps_with_relative_lrs
+  STEPS: [0, 11, 14]
+  LRS: [1, 0.1, 0.01]
+  MAX_EPOCH: 15
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 1e-4
+  OPTIMIZING_METHOD: sgd
+MODEL:
+  MODEL_NAME: vit_base_patch16_224_develop
+  NUM_CLASSES: 180 # the number of target concepts
+  ARCH: vit
+  LOSS_FUNC: cross_entropy
+  DROPOUT_RATE: 0.5
+  NUM_SEG: 8 # the number of video clips
+  DROP_E: 0.1
+TEST:
+  ENABLE: True
+  DATASET: howto100m_develop
+  BATCH_SIZE: 16
+  NUM_ENSEMBLE_VIEWS: 4
+  NUM_SPATIAL_CROPS: 1
+DATA_LOADER:
+  NUM_WORKERS: 10
+  PIN_MEMORY: True
+NUM_GPUS: 8
+NUM_SHARDS: 4 # the number of machine nodes
+RNG_SEED: 0
+OUTPUT_DIR: .

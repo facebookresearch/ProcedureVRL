@@ -43,7 +43,7 @@ class="center">
 5. [Zero-shot Inference](#Zero-shot-Inference)
 6. [Finetuning](#Finetuning)
 7. [Finetuning Evaluation](#Finetuning-Evaluation)
-8. [Visualization of Zero-shot Step Forecasting & Keyframe Generation](#Visualization-of-Zero-shot-Step-Forecasting-&-Keyframe-Generation)
+8. [Visualization of Zero-shot Step Forecasting and Keyframe Generation](#Visualization-of-Zero-shot-Step-Forecasting-and-Keyframe-Generation)
 9. [License and Contributing](#License-and-Contributing)
 10. [Citation and Acknowledgement](#Citation-and-Acknowledgement)
 
@@ -306,9 +306,9 @@ To evaluate the finetuned models, you can either run on multi nodes (re-use fine
 **Note** that `TIMESFORMER.PRETRAINED_MODEL` should point to the correct folder where your finetuned model locate.
 
 
-## Visualization of Zero-shot Step Forecasting & Keyframe Generation
+## Visualization of Zero-shot Step Forecasting and Keyframe Generation
 
-After pretraining, our model supports zero-shot step forecasting. As the following figure shows, given a video recording previous steps (left), our model can forecast multiple meaningful predictions by sampling from our diffusion model (right: step descriptions). Going futher, we leverage the [trained Stable Diffusion model](https://github.com/CompVis/stable-diffusion) to vision what the future looks like (right: keyframes). Specifically, to keep the generated images visually consistent with the input video, we let stable diffusion model take one input video frame and the description of predicted step as input and generate an image.
+After pretraining, our model supports zero-shot step forecasting. As shown below, given a video recording previous steps (left), our model can forecast multiple meaningful predictions by sampling from our diffusion model (right: step descriptions). Going futher, we leverage the [trained Stable Diffusion model](https://github.com/CompVis/stable-diffusion) to vision what the future looks like (right: keyframes). Specifically, to keep the generated images visually consistent with the input video, we let stable diffusion model take one input video frame and the description of predicted step as input and generate an image.
 
 <p align="center">
 <img src="docs/visualization.png" width=99% height=99%

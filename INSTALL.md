@@ -25,9 +25,9 @@ Lastly, build the codebase by running:
 ```
 git clone https://github.com/facebookresearch/ProcedureVRL
 cd ProcedureVRL
-# way 1
+# step 1
 python setup.py build develop
-# way 2
+# step 2
 export PYTHONPATH="$PYTHONPATH:<Path_To_This_Directory>"
 ```
 

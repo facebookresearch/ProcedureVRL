@@ -58,9 +58,9 @@ Please use the dataset preparation instructions provided in [DATASET.md](DATASET
 
 ## Model Zoo
 
-All trained models can be downloaded from this [Google Drive](https://drive.google.com/drive/folders/1Qg3qCjDNRnuFNdRNQbocfLnrzwTosCN1?usp=drive_link). Please put the downloaded folders in `./exps` directory (e.g., `./exps/procedurevrl-stg2/checkpoints/checkpoint_epoch_00025.pyth`)
+All trained models can be downloaded from this [Google Drive](https://drive.google.com/drive/folders/1Qg3qCjDNRnuFNdRNQbocfLnrzwTosCN1?usp=drive_link). Please put the downloaded folders in `./exps` directory. Each downloaded folder contains a trained model checkpoint that was saved in a `.pyth` file (e.g., our model pretrained on HowTo100M is saved at `./exps/procedurevrl-stg2/checkpoints/checkpoint_epoch_00025.pyth`).
 
-We provide our model pretrained on **HowTo100M** dataset with **TimeSformer** architecture for our video encoder ([download link](https://drive.google.com/drive/folders/1j20nI7Nq8qfZTHTk7cFpcZUWPOlXU_PD?usp=drive_link)). This model achieves **new state-of-the-art** results in both **zero-shot** and **finetuning** settings across following benchmarks:
+We provide our model pretrained on **HowTo100M** dataset with **TimeSformer** architecture for our video encoder ([download link](https://drive.google.com/drive/folders/1j20nI7Nq8qfZTHTk7cFpcZUWPOlXU_PD?usp=drive_link)). This model achieves **new state-of-the-art** results in both **zero-shot** and **finetuning** settings across following benchmarks where **NA** suggusts that the model doesn't support such ability:
 
 **Step forecasting** on COIN dataset:
 
@@ -73,7 +73,7 @@ We provide our model pretrained on **HowTo100M** dataset with **TimeSformer** ar
 
 | Model | Pretraining Supervision | Pretraining Dataset | Zero-shot (%) | Finetuning (%) |
 | --- | --- | --- | --- | --- |
-| Previous SoTA | Unsupervised: ASR + wikiHow | HowTo100M | 10.2 | 46.6 |
+| Previous SoTA | Unsupervised: ASR + wikiHow | HowTo100M | NA | 54.1 |
 | Ours | Unsupervised: ASR | HowTo100M | **16.6** | **56.9** |
 
 **Procedural activity classification** on COIN dataset:
@@ -91,6 +91,7 @@ We provide our model pretrained on **HowTo100M** dataset with **TimeSformer** ar
 | DistantSup |  Unsupervised: ASR + wikiHow | HowTo100M | 44.4 | 67.1 | 58.1 |
 | Ours | Unsupervised: ASR | HowTo100M  | **47.7** | 69.5 | **60.3** |
 
+**Note** that both DistantSup and Ours adopt TimeSformer as encoder backbone while MoViNet itself is a heavily optimized video backbone.
 
 For future use, we also provide our model pretrained on **HowTo100M** dataset with **MViT-v2** architecture for our video encoder ([download link](https://drive.google.com/drive/folders/1wf4QNY0o7T82zRP9a-6D3pjJHlaoKgP4?usp=drive_link)). We test pretrained models on COIN dataset with **zero-shot setting**:
 

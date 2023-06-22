@@ -13,7 +13,7 @@ Follow instructions from [dataset provider](https://coin-dataset.github.io/).
 
 We have provided data CSV files for pretraining on [full HowTo100M](./data_csv/howto100m_full), pretraining on [a subset of HowTo100M](./data_csv/howto100m_subset), [step classification on COIN](./data_csv/coin_step), [step forecasting on COIN](./data_csv/coin_next), and [recognition of procedural activities on COIN](./data_csv/coin_task).
 
-Before you run experiments on any of them, you will need to set `DATA.PATH_PREFIX` in the [config yaml files](./configs) to the actual directory where the videos are stored. Note that due to posssibly different downloading stratergies, you may need to check the format of the video to be consistent between the data csv files and the actual videos you have.
+Before you run experiments on any of them, you will need to set `DATA.PATH_PREFIX` in the [config yaml files](./configs) to the actual directory where the videos are stored. Note that due to posssibly different downloading stratergies, you may need to check the format of the video to be consistent between the data csv files and the actual videos you have (e.g., the file extension such as `.mp4`, `.mkv`, `.webm`, etc).
 
 
 ## EPIC-Kitchens-100

@@ -10,7 +10,7 @@ This is the official PyTorch implementation of ProcedureVRL (CVPR 2023).
 > **CVPR 2023**<br>
 
 <p align="center">
-<img src="ProcedureVRL.jpg" width=75% height=75%
+<img src="docs/ProcedureVRL.jpg" width=75% height=75%
 class="center">
 </p>
 
@@ -25,7 +25,7 @@ We propose a video-and-language pretraining framework for learning **procedure-a
 
 
 <p align="center">
-<img src="ProcedureVRL_Model.jpg" width=99% height=99%
+<img src="docs/ProcedureVRL_Model.jpg" width=99% height=99%
 class="center">
 </p>
 
@@ -43,8 +43,9 @@ class="center">
 5. [Zero-shot Inference](#Zero-shot-Inference)
 6. [Finetuning](#Finetuning)
 7. [Finetuning Evaluation](#Finetuning-Evaluation)
-8. [License and Contributing](#License-and-Contributing)
-9. [Citation and Acknowledgement](#Citation-and-Acknowledgement)
+8. [Visualization of Zero-shot Step Forecasting & Keyframe Generation](#Visualization-of-Zero-shot-Step-Forecasting-&-Keyframe-Generation)
+9. [License and Contributing](#License-and-Contributing)
+10. [Citation and Acknowledgement](#Citation-and-Acknowledgement)
 
 
 ## Installation
@@ -303,6 +304,17 @@ TIMESFORMER.PRETRAINED_MODEL exps/procedurevrl-stg2/checkpoints/checkpoint_epoch
 To evaluate the finetuned models, you can either run on multi nodes (re-use finetuning scripts by additionally setting `TRAIN.ENABLE` to `False`), or run on a single node (re-use zero-shot inference scripts by additionally setting `DEV.MATCH_LANG_EMB` to `False`).
 
 **Note** that `TIMESFORMER.PRETRAINED_MODEL` should point to the correct folder where your finetuned model locate.
+
+
+## Visualization of Zero-shot Step Forecasting & Keyframe Generation
+
+After pretraining, our model supports zero-shot step forecasting. As the following figure shows, given a video recording previous steps (left), our model can forecast multiple meaningful predictions by sampling from our diffusion model (right: step descriptions). Going futher, we leverage the [trained Stable Diffusion model](https://github.com/CompVis/stable-diffusion) to vision what the future looks like (right: keyframes). Specifically, to keep the generated images visually consistent with the input video, we let stable diffusion model take one input video frame and the description of predicted step as input and generate an image.
+
+<p align="center">
+<img src="docs/visualization.png" width=99% height=99%
+class="center">
+</p>
+
 
 ## License and Contributing
 

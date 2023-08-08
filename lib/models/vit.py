@@ -235,17 +235,21 @@ class VisionTransformer(nn.Module):
             # order pretraining
             self.order_tfm = OrderTransformer(num_seg=self.order_max_len-1, tfm_layers=self.order_tfm_layers, dropout=self.cfg.MODEL.DROP_E, hidden_size=self.head.weight.shape[0], cfg=self.cfg)
         else:  # finetuning
-            # classify video emb into classes
-            self.label_emb = False
-            self.test_lang_emb = torch.load(self.cfg.DEV.TEST_LANG_EMB)
-            self.head = nn.Linear(embed_dim, self.test_lang_emb.shape[1]) 
-            for p in self.head.parameters(): p.requires_grad = False
-            
-            if cfg.TRAIN.DATASET == 'Epickitchens':
-                self.head_n = nn.Linear(self.test_lang_emb.shape[1], 300)
-                self.head_v = nn.Linear(self.test_lang_emb.shape[1], 97)
-            else:
-                self.head_cls = nn.Linear(self.test_lang_emb.shape[1], num_classes)  
+            if self.cfg.DEV.MATCH_LANG_EMB: # match video emb to language emb
+                self.label_emb = torch.load(self.cfg.DEV.TEST_LANG_EMB)
+                self.head = nn.Linear(embed_dim, self.label_emb.shape[1])  # project to the dim of emb
+                for p in self.head.parameters(): p.requires_grad = False # fix head
+            else: # classify video emb into classes
+                self.label_emb = False
+                self.test_lang_emb = torch.load(self.cfg.DEV.TEST_LANG_EMB)
+                self.head = nn.Linear(embed_dim, self.test_lang_emb.shape[1]) 
+                for p in self.head.parameters(): p.requires_grad = False
+                
+                if cfg.TRAIN.DATASET == 'Epickitchens':
+                    self.head_n = nn.Linear(self.test_lang_emb.shape[1], 300)
+                    self.head_v = nn.Linear(self.test_lang_emb.shape[1], 97)
+                else:
+                    self.head_cls = nn.Linear(self.test_lang_emb.shape[1], num_classes)  
             self.apply(self._init_weights)
         
         # text encoder

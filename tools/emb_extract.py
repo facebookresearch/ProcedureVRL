@@ -75,7 +75,7 @@ def get_step_emb_lang(input_step_list, output_emb_file):
     return text_features
 
 if __name__ == "__main__":
-    # 5. HT100M steps (verb phrases) with "ViT-L/14"
+    # 5. HT100M steps (verb phrases) with "ViT-B/16"
     input_file = 'data/ht100m_asr_verb_phrase.txt'
     output_emb_file = 'data/clip_14_step_emb_ht100m_vbphrase.pth'
     
@@ -87,7 +87,7 @@ if __name__ == "__main__":
             step_vps.append(vp)
     print("We got {} verb phrases!".format(len(step_vps)))
     print(step_vps[:20])
-    step_feat = get_step_emb(step_vps, output_emb_file)
+    step_feat = get_step_emb(step_vps, output_emb_file, model_name="ViT-B/16")
     print("We got step embeddings with shape {} and save it to {}!".format(step_feat.size(), output_emb_file))
     
     ipdb.set_trace() # sys.exit(0)
